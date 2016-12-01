@@ -2,6 +2,12 @@
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
+## OpenSource
+PilotPlant.xcodeproj
+.vagrant
+Packages
+*.pkg
+
 ## Build generated
 build/
 DerivedData/
