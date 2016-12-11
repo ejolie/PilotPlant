@@ -44,50 +44,12 @@ import UIKit
 }
 
 
-
-@IBDesignable open class CirclePhotoImageView : UIView {
-    
-    var imageView:UIImageView!
-    var image:UIImage?
-    
-    open override func prepareForInterfaceBuilder() {
-        let bundle = Bundle(for: type(of: self))
-        self.image = UIImage(named: imageName, in: bundle, compatibleWith: self.traitCollection)
-        self.imageView.image = self.image
-    }
-    
-    open override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        print("awake")
-    }
-    
-    @IBInspectable open var imageName:String = "LS_Profile_120" {
-        didSet {
-            if imageView == nil {
-                imageView = UIImageView(frame: CGRect.zero)
-                self.addSubview(imageView)
-            }
-            if imageView != nil {
-                let image = UIImage(named: imageName)
-                self.imageView.image = image
-            }
-        }
-    }
-    
+@IBDesignable
+open class CircleMaskImageView : UIImageView {
     open override func layoutSubviews() {
         super.layoutSubviews()
-        
-        if imageView == nil {
-            imageView = UIImageView(frame: CGRect.zero)
-            self.addSubview(imageView)
-        }
-        if imageView != nil {
-            imageView.frame = self.frame
-            imageView.layer.cornerRadius = imageView.frame.size.height / 2.0;
-            imageView.layer.masksToBounds = true;
-            imageView.layer.borderWidth = 0;
-        }
-        
+        self.layer.cornerRadius = self.frame.size.height / 2.0;
+        self.layer.masksToBounds = true;
+        self.layer.borderWidth = 0;
     }
 }

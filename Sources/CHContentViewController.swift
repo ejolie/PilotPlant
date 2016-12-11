@@ -14,7 +14,7 @@ import AVFoundation
 import AVKit
 
 
-open class ImageScrollScene : UIViewController, UIScrollViewDelegate {
+public class ImageScrollScene : UIViewController, UIScrollViewDelegate {
     @IBInspectable open var imageName: String = ""
     
     var imageScrollView : UIScrollView!
@@ -214,6 +214,14 @@ open class StopMotionScene: UIViewController {
         stopMotionImageView.image = animationImages.last
         stopMotionImageView.startAnimating()
     }
+    
+    override open func viewWillDisappear (_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if stopMotionImageView.isAnimating ==  true {
+            stopMotionImageView.stopAnimating()
+        }
+    }
+    
 }
 
 open class AudioScene:UIViewController, AVAudioPlayerDelegate {
