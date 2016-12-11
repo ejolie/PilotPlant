@@ -170,15 +170,17 @@ open class MovieScene: AVPlayerViewController {
 }
 
 open class StopMotionScene: UIViewController {
+    
     @IBInspectable open var imageBaseName = ""
-    @IBInspectable open var repeats = false
+    @IBInspectable open var repeatCount = 1
     @IBInspectable open var duration = 5.0
     
     var stopMotionImageView = UIImageView()
     var animationImages : [UIImage] = []
     
-    override open func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        
         var i = 1
         for i in 1 ..< 32000
         {
@@ -196,20 +198,23 @@ open class StopMotionScene: UIViewController {
             }
         }
         
+        stopMotionImageView.animationImages = animationImages
+        stopMotionImageView.contentMode = .scaleAspectFit
+    }
+    
+    override open func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         if stopMotionImageView.superview == nil {
             stopMotionImageView.frame = self.view.frame
             self.view.addSubview(stopMotionImageView)
         }
-        
-        stopMotionImageView.animationImages = animationImages
-        stopMotionImageView.contentMode = .scaleAspectFit
     }
     
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        /*Swift 3 */
-        stopMotionImageView.animationRepeatCount = 0
+        stopMotionImageView.animationRepeatCount = self.repeatCount
         stopMotionImageView.animationDuration = duration
         stopMotionImageView.image = animationImages.last
         stopMotionImageView.startAnimating()
