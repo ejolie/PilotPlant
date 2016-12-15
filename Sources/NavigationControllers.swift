@@ -55,3 +55,10 @@ public class HalfSizePresentationController : UIPresentationController {
         return CGRect(x: 0, y: containerView!.bounds.height-500, width: containerView!.bounds.width, height: 500)
     }
 }
+
+
+open class Link: UIStoryboardSegue {
+    override open func perform() {
+        print("Linked")
+    }
+}

@@ -53,3 +53,5 @@ open class CircleMaskImageView : UIImageView {
         self.layer.borderWidth = 0;
     }
 }
+
+
