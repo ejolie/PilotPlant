@@ -17,8 +17,8 @@ import AVKit
 public class ImageScrollScene : UIViewController, UIScrollViewDelegate {
     @IBInspectable open var imageName: String = ""
     
-    var imageScrollView : UIScrollView!
-    var imageView:UIImageView!
+    var imageScrollView : UIScrollView?
+    var imageView:UIImageView?
     
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -32,16 +32,18 @@ public class ImageScrollScene : UIViewController, UIScrollViewDelegate {
             }
         }
         
-        if imageScrollView.superview == nil {
+        if let scrollView = imageScrollView?.superview  {
+            
+        } else {
             imageScrollView = UIScrollView(frame: CGRect.zero)
-            imageScrollView.frame = self.view.frame
-            self.view.addSubview(imageScrollView)
+            imageScrollView?.frame = self.view.frame
+            self.view.addSubview(imageScrollView!)
         }
-        imageScrollView.delegate = self
+        imageScrollView?.delegate = self
         
         imageView = UIImageView(image: targetImage)
-        imageScrollView.addSubview(imageView)
-        imageScrollView.contentSize = imageSize
+        imageScrollView?.addSubview(imageView!)
+        imageScrollView?.contentSize = imageSize
         
     }
     
@@ -53,13 +55,13 @@ public class ImageScrollScene : UIViewController, UIScrollViewDelegate {
         guard let pinchGesture = sender as? UIPinchGestureRecognizer else {
             return
         }
-        let currentScale = imageScrollView.zoomScale
+        let currentScale = imageScrollView?.zoomScale
         
         let state = pinchGesture.state
         if (state == .began || state == .changed)
         {
-            let scale = currentScale + (pinchGesture.scale - 1.0)
-            imageScrollView.zoomScale = scale
+            let scale = currentScale! + (pinchGesture.scale - 1.0)
+            imageScrollView?.zoomScale = scale
             pinchGesture.scale = 1.0
         }
     }
@@ -80,6 +82,7 @@ public class ImageScrollScene : UIViewController, UIScrollViewDelegate {
         print("Will End Dragging, velocity = \(velocity.x) ,  \(velocity.y)")
     }
 }
+
 
 
 open class MapScene: UIViewController {
@@ -260,3 +263,14 @@ open class AudioScene:UIViewController, AVAudioPlayerDelegate {
     }
 }
 
+
+@IBDesignable
+public class TableViewSectionHeaderScene : UITableViewController
+{
+    @IBOutlet var headerViews:[UIView] = []
+    
+    public override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return headerViews[section]
+    }
+    
+}

@@ -47,7 +47,6 @@ open class ActivityScene: UIViewController {
         
         let string: String = "Hello"
         let URL = Foundation.URL(string:"http://www.codershigh.com")!
-        let image = UIImage(named: activityIcon)
         let activity = CustomActivity(name: name, icon: activityIcon)
         
         let activityViewController = UIActivityViewController(activityItems: [string, URL], applicationActivities: [activity])

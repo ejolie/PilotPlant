@@ -8,7 +8,6 @@
 
 import UIKit
 import ObjectiveC
-import PilotPlant
 
 private var backButtonHidden : Bool = false
 private var tapKBDismiss : Bool = false

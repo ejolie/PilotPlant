@@ -71,7 +71,7 @@ open class PagingScene : UIViewController , UIScrollViewDelegate {
         
         
         var leftOrigin = 0
-        var imageCount = 0
+        let imageCount = 0
 
         for imageCount in 0..<99 {
             let imageFileName = imageBaseName + "_\(imageCount+1)"
