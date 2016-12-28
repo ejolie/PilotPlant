@@ -51,7 +51,11 @@ class DrawingCanvasView: UIView {
             context.addLine(to:line.end)
         }
         
+<<<<<<< HEAD
         context.setStrokeColor(UIColor.red.cgColor)
+=======
+        context.setStrokeColor(UIColor.black.cgColor)
+>>>>>>> fb8ad0766e2f8fd5ffee8fc4e1306cae384a498a
         context.setLineWidth(5.0)
         context.strokePath()
     }
