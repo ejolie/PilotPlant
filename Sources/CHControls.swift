@@ -55,3 +55,28 @@ open class CircleMaskImageView : UIImageView {
 }
 
 
+@IBDesignable
+open class CircleDotButton : UIButton {
+    var selectedLayer:CAShapeLayer = CAShapeLayer()
+    
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        self.layer.cornerRadius = self.frame.size.height / 2.0;
+        self.layer.masksToBounds = true;
+        self.layer.borderWidth = 0;
+        
+        if isSelected == true {
+            let buttonSize = CGSize(width:self.bounds.size.width / 3.0, height: self.bounds.size.height / 3.0)
+            let center = CGPoint(x:self.bounds.center.x - (buttonSize.width / 2.0) , y : self.bounds.center.y - (buttonSize.height / 2.0))
+            let selectedDotRect = CGRect(origin: center, size: buttonSize)
+            
+            selectedLayer.path = UIBezierPath(ovalIn: selectedDotRect).cgPath
+            selectedLayer.backgroundColor = UIColor.black.cgColor
+            selectedLayer.opacity = 0.3
+            self.layer.addSublayer(selectedLayer)
+        } else {
+            selectedLayer.removeFromSuperlayer()
+        }
+    }
+
+}
