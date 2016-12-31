@@ -56,27 +56,70 @@ open class CircleMaskImageView : UIImageView {
 
 
 @IBDesignable
-open class CircleDotButton : UIButton {
+open class CircleDotButton : CircleButton {
     var selectedLayer:CAShapeLayer = CAShapeLayer()
+
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        let buttonSize = CGSize(width:self.bounds.size.width / 3.0, height: self.bounds.size.height / 3.0)
+        let center = CGPoint(x:self.bounds.center.x - (buttonSize.width / 2.0) , y : self.bounds.center.y - (buttonSize.height / 2.0))
+        let selectedDotRect = CGRect(origin: center, size: buttonSize)
+        
+        selectedLayer.path = UIBezierPath(ovalIn: selectedDotRect).cgPath
+        selectedLayer.backgroundColor = UIColor.black.cgColor
+        selectedLayer.opacity = 0.3
+    }
     
+    
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if isSelected == true {
+            self.layer.addSublayer(selectedLayer)
+        } else {
+            selectedLayer.removeFromSuperlayer()
+        }
+    }
+}
+
+@IBDesignable
+open class CircleButton : UIButton {
     open override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.cornerRadius = self.frame.size.height / 2.0;
         self.layer.masksToBounds = true;
         self.layer.borderWidth = 0;
         
+    }
+}
+
+@IBDesignable
+open class CircleImageButton : UIButton {
+    var selectedLayer:CALayer = CALayer()
+    var darkenLayer:CALayer = CALayer()
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        selectedLayer.contents = UIImage(named: "filter_list_slider")?.cgImage
+
+        darkenLayer.backgroundColor = UIColor.black.cgColor
+        darkenLayer.opacity = 0.5
+    }
+    
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.layer.cornerRadius = self.frame.size.height / 2.0;
+        self.layer.masksToBounds = true;
+        self.layer.borderWidth = 0;
+        
         if isSelected == true {
-            let buttonSize = CGSize(width:self.bounds.size.width / 3.0, height: self.bounds.size.height / 3.0)
-            let center = CGPoint(x:self.bounds.center.x - (buttonSize.width / 2.0) , y : self.bounds.center.y - (buttonSize.height / 2.0))
-            let selectedDotRect = CGRect(origin: center, size: buttonSize)
-            
-            selectedLayer.path = UIBezierPath(ovalIn: selectedDotRect).cgPath
-            selectedLayer.backgroundColor = UIColor.black.cgColor
-            selectedLayer.opacity = 0.3
+            self.layer.addSublayer(darkenLayer)
             self.layer.addSublayer(selectedLayer)
         } else {
+            darkenLayer.removeFromSuperlayer()
             selectedLayer.removeFromSuperlayer()
         }
     }
-
 }
