@@ -54,7 +54,7 @@ open class CircleMaskImageView : UIImageView {
     }
 }
 
-
+/*
 @IBDesignable
 open class CircleDotButton : CircleButton {
     var selectedLayer:CAShapeLayer = CAShapeLayer()
@@ -81,6 +81,7 @@ open class CircleDotButton : CircleButton {
         }
     }
 }
+*/
 
 @IBDesignable
 open class CircleButton : UIButton {
