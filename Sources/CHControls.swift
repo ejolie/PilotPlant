@@ -43,6 +43,34 @@ import UIKit
     }
 }
 
+@IBDesignable
+open class VerticleButton: UIButton {
+    @IBInspectable open var topSpace:Double = 0.0 {
+        didSet {
+            self.layoutIfNeeded()
+        }
+    }
+    @IBInspectable open var bottomSpace:Double = 0.0 {
+        didSet {
+            self.layoutIfNeeded()
+        }
+    }
+    
+    override open func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if let imageFrame = self.imageView?.frame {
+            let newImageFrame = CGRect(x: (self.bounds.size.width - imageFrame.size.width) / 2, y: (CGFloat(0.0 + topSpace)), width: imageFrame.size.width, height: imageFrame.size.height)
+            self.imageView?.frame = newImageFrame
+        }
+        
+        if let labelFrame = self.titleLabel?.frame {
+            let newLabelFrame = CGRect(x: (self.bounds.size.width - labelFrame.size.width) / 2, y: self.bounds.size.height - labelFrame.size.height - CGFloat(bottomSpace), width: labelFrame.size.width, height: labelFrame.size.height)
+            self.titleLabel?.frame = newLabelFrame
+        }
+    }
+    
+}
 
 @IBDesignable
 open class CircleMaskImageView : UIImageView {

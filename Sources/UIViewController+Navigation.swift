@@ -45,11 +45,18 @@ public extension UIViewController {
         }
     }
     
+    @IBAction func navigationBackWithoutAnimation(_ sender : AnyObject){
+        if let navigationCongtroller = self.navigationController {
+            navigationController?.popViewController(animated: false)
+        }
+    }
+    
     @IBAction func navigationBackToRoot(_ sender : AnyObject){
         if let navigationCongtroller = self.navigationController {
             navigationController?.popToRootViewController(animated: true)
         }
     }
+    
     
     @IBAction func keyboardDismiss(_ sender: AnyObject) {
         for view in self.view.subviews {

@@ -82,12 +82,16 @@ class RecordButtoon:UIView {
         
         self.isRecording = true
         if progressTimer == nil {
-            progressTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {_ in
-                self.progress += 0.05
-                self.recordLabel?.text = String(format:"00:%02d", Int(self.progress / 0.05))
-                self.updateLayerProperties()
-                self.setNeedsLayout()
-            })
+            if #available(iOS 10.0, *) {
+                progressTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {_ in
+                    self.progress += 0.05
+                    self.recordLabel?.text = String(format:"00:%02d", Int(self.progress / 0.05))
+                    self.updateLayerProperties()
+                    self.setNeedsLayout()
+                })
+            } else {
+                // Fallback on earlier versions
+            }
         }
     }
     
