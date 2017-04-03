@@ -44,7 +44,7 @@ import UIKit
 }
 
 @IBDesignable
-open class VerticleButton: UIButton {
+open class VerticalButton: UIButton {
     @IBInspectable open var topSpace:Double = 0.0 {
         didSet {
             self.layoutIfNeeded()
