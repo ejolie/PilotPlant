@@ -10,14 +10,14 @@ import UIKit
 
 @IBDesignable open class RoundRectButton: UIButton {
     
-    @IBInspectable open var corner:Double = 0.0 {
+    @IBInspectable open var corner:Double = 8.0 {
         didSet {
-            self.layer.cornerRadius = CGFloat(corner)
+            self.layoutIfNeeded()
         }
     }
-    @IBInspectable open var border:Double = 0.0 {
+    @IBInspectable open var border:Double = 2.0 {
         didSet {
-            self.layer.borderWidth = CGFloat(border)
+            self.layoutIfNeeded()
         }
     }
     
@@ -36,8 +36,8 @@ import UIKit
     
     override open func layoutSubviews() {
         super.layoutSubviews()
-        //self.layer.cornerRadius = 8
-        //self.layer.borderWidth = 2
+        self.layer.borderWidth = CGFloat(border)
+        self.layer.cornerRadius = CGFloat(corner)
         self.layer.borderColor = self.tintColor?.cgColor
         self.setTitleColor(UIColor.white, for: .highlighted)
     }
@@ -73,14 +73,23 @@ open class VerticalButton: UIButton {
 }
 
 @IBDesignable
-open class CircleMaskImageView : UIImageView {
+open class CirclarMaskImageView : UIImageView {
+    @IBInspectable open var border:Double = 0.0 {
+        didSet {
+            self.layoutIfNeeded()
+        }
+    }
+    
     open override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.cornerRadius = self.frame.size.height / 2.0;
         self.layer.masksToBounds = true;
-        self.layer.borderWidth = 0;
+        self.layer.borderWidth = CGFloat(self.border);
+        self.layer.borderColor = self.backgroundColor?.cgColor
     }
 }
+
+
 
 /*
 @IBDesignable

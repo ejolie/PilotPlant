@@ -172,65 +172,6 @@ open class MovieScene: AVPlayerViewController {
     }
 }
 
-open class StopMotionScene: UIViewController {
-    
-    @IBInspectable open var imageBaseName = ""
-    @IBInspectable open var repeatCount = 1
-    @IBInspectable open var duration = 5.0
-    
-    var stopMotionImageView = UIImageView()
-    var animationImages : [UIImage] = []
-    
-    override open func viewDidLoad() {
-        super.viewDidLoad()
-        
-        var i = 1
-        for i in 1 ..< 32000
-        {
-            let imageFileName = imageBaseName + "_\(i)"
-            if let image = UIImage(named: imageFileName) {
-                animationImages.append(image)
-            } else { break }
-        }
-        
-        
-        
-        for view in self.view.subviews {
-            if view is UIImageView {
-                stopMotionImageView = view as! UIImageView
-            }
-        }
-        
-        stopMotionImageView.animationImages = animationImages
-        stopMotionImageView.contentMode = .scaleAspectFit
-    }
-    
-    override open func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if stopMotionImageView.superview == nil {
-            stopMotionImageView.frame = self.view.frame
-            self.view.addSubview(stopMotionImageView)
-        }
-    }
-    
-    override open func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        stopMotionImageView.animationRepeatCount = self.repeatCount
-        stopMotionImageView.animationDuration = duration
-        stopMotionImageView.image = animationImages.last
-        stopMotionImageView.startAnimating()
-    }
-    
-    override open func viewWillDisappear (_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        if stopMotionImageView.isAnimating ==  true {
-            stopMotionImageView.stopAnimating()
-        }
-    }
-    
-}
 
 open class AudioScene:UIViewController, AVAudioPlayerDelegate {
     
