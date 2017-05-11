@@ -65,11 +65,10 @@ open class VerticalButton: UIButton {
         }
         
         if let labelFrame = self.titleLabel?.frame {
-            let newLabelFrame = CGRect(x: (self.bounds.size.width - labelFrame.size.width) / 2, y: self.bounds.size.height - labelFrame.size.height - CGFloat(bottomSpace), width: labelFrame.size.width, height: labelFrame.size.height)
+            let newLabelFrame = CGRect(x: (self.bounds.size.width - labelFrame.size.width) / 2, y: self.bounds.size.height - labelFrame.size.height - CGFloat(bottomSpace), width: self.bounds.size.width, height: labelFrame.size.height)
             self.titleLabel?.frame = newLabelFrame
         }
     }
-    
 }
 
 @IBDesignable
@@ -121,7 +120,7 @@ open class CircleDotButton : CircleButton {
 */
 
 @IBDesignable
-open class CircleButton : UIButton {
+open class CircluarButton : UIButton {
     open override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.cornerRadius = self.frame.size.height / 2.0;
@@ -132,14 +131,22 @@ open class CircleButton : UIButton {
 }
 
 @IBDesignable
-open class CircleImageButton : UIButton {
+open class CirclularToggleImageButton : UIButton {
+    
+    @IBInspectable open var toggleImage:String = "settings" {
+        didSet {
+            self.layoutIfNeeded()
+        }
+    }
+
+    
     var selectedLayer:CALayer = CALayer()
     var darkenLayer:CALayer = CALayer()
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        selectedLayer.contents = UIImage(named: "filter_list_slider")?.cgImage
+        
 
         darkenLayer.backgroundColor = UIColor.black.cgColor
         darkenLayer.opacity = 0.5
@@ -147,6 +154,8 @@ open class CircleImageButton : UIButton {
     
     open override func layoutSubviews() {
         super.layoutSubviews()
+        
+        selectedLayer.contents = UIImage(named: toggleImage)?.cgImage
         
         self.layer.cornerRadius = self.frame.size.height / 2.0;
         self.layer.masksToBounds = true;
