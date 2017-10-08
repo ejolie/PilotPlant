@@ -23,7 +23,7 @@ TODO: Add long description of the pod here.
 
   s.homepage         = 'https://github.com/lingostar/PilotPlant'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+  s.license          = { :type => 'GPL', :file => 'LICENSE' }
   s.author           = { 'lingostar' => 'admin@lingostar.co.kr' }
   s.source           = { :git => 'https://github.com/lingostar/PilotPlant.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
@@ -32,6 +32,8 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'PilotPlant/Classes/**/*'
   
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3.2' }
+
   # s.resource_bundles = {
   #   'PilotPlant' => ['PilotPlant/Assets/*.png']
   # }
