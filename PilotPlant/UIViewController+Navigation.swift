@@ -69,8 +69,7 @@ public extension UIViewController {
         let imagePickerController = UIImagePickerController()
         imagePickerController.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
         imagePickerController.allowsEditing = true
-        self.present(imagePickerController, animated: true, completion: { imageP in
-            
+        self.present(imagePickerController, animated: true, completion: {
         })
     }
     
