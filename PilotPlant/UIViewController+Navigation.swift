@@ -40,20 +40,20 @@ public extension UIViewController {
     
     
     @IBAction func navigationBack(_ sender : AnyObject){
-        if let navigationCongtroller = self.navigationController {
-            navigationController?.popViewController(animated: true)
+        if let navigationController = self.navigationController {
+            navigationController.popViewController(animated: true)
         }
     }
     
     @IBAction func navigationBackWithoutAnimation(_ sender : AnyObject){
-        if let navigationCongtroller = self.navigationController {
-            navigationController?.popViewController(animated: false)
+        if let navigationController = self.navigationController {
+            navigationController.popViewController(animated: false)
         }
     }
     
     @IBAction func navigationBackToRoot(_ sender : AnyObject){
-        if let navigationCongtroller = self.navigationController {
-            navigationController?.popToRootViewController(animated: true)
+        if let navigationController = self.navigationController {
+            navigationController.popToRootViewController(animated: true)
         }
     }
     

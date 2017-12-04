@@ -62,7 +62,7 @@ class RecordButtoon:UIView {
         self.setNeedsLayout()
     }
     
-    
+    @objc
     func tapAction() {
         print("Tap")
         
@@ -74,7 +74,7 @@ class RecordButtoon:UIView {
         self.backgroundRingLayer?.add(blink, forKey: "fillColor")
     }
     
-    
+    @objc
     func longPressAction() {
         print("LongPress")
         self.layoutLabel(show: true)
@@ -104,7 +104,7 @@ class RecordButtoon:UIView {
             backgroundRingLayer = CAShapeLayer()
             layer.addSublayer(backgroundRingLayer!)
             
-            let rect = (bounds).insetBy(dx: CGFloat(lineWidth.divided(by:2.0)), dy: CGFloat(lineWidth.divided(by:2.0)))
+            let rect = (bounds).insetBy(dx: CGFloat(lineWidth / 2.0), dy: CGFloat(lineWidth / 2.0))
             let path = UIBezierPath(ovalIn:rect)
             
             backgroundRingLayer?.path = path.cgPath
@@ -120,7 +120,7 @@ class RecordButtoon:UIView {
                 progressLayer = CAShapeLayer()
                 layer.addSublayer(progressLayer!)
                 
-                let innerRect = (bounds).insetBy(dx: CGFloat(lineWidth.divided(by:2.0)), dy: CGFloat(lineWidth.divided(by:2.0)))
+                let innerRect = (bounds).insetBy(dx: CGFloat(lineWidth / 2.0), dy: CGFloat(lineWidth / 2.0))
                 let innerPath = UIBezierPath(ovalIn:innerRect)
                 
                 progressLayer?.path = innerPath.cgPath
@@ -167,7 +167,7 @@ class RecordButtoon:UIView {
         }
         
     }
-    
+    @objc
     func stopRecord() {
         self.isRecording = false
         self.layoutLabel(show: false)

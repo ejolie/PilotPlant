@@ -30,7 +30,12 @@ func blendWithMask(background: CIImage, mask: CIImage) -> Filter {
         let filter = CIFilter(name: "CIBlendWithMask",
                               withInputParameters: parameters)
         let cropRect = image.extent
+        #if swift(>=4.0)
+        return filter!.outputImage!.cropped(to:cropRect)
+        #else
         return filter!.outputImage!.cropping(to:cropRect)
+        #endif
+        
     }
 }
 
