@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PilotPlant'
-  s.version          = '0.1.0'
+  s.version          = '1.0.1'
   s.summary          = 'Extent Xcode Storyboard to create iOS App prototype in Xcode.'
 
 # This description is used to generate tags and improve search results.
@@ -28,17 +28,10 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/lingostar/PilotPlant.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
 
-  s.source_files = 'PilotPlant/**/*'
-  
+  s.source_files = 'PilotPlant/*.swift'
+
   s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3.2' }
 
-  # s.resource_bundles = {
-  #   'PilotPlant' => ['PilotPlant/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
